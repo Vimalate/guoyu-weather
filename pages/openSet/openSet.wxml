@@ -1,0 +1,2 @@
+<!--pages/openSet/openSet.wxml-->
+<button open-type='openSetting'>打开地理位置</button>

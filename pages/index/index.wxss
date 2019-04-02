@@ -1,0 +1,231 @@
+page {
+  -webkit-font-smoothing: antialiased;
+  font-family: "PingHei","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+}
+.weather_bcg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.weather_container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #fff;
+  font-size: 30rpx;
+}
+.search_container {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 90rpx;
+}
+
+.search input {
+  /* flex: 1; */
+  margin-right: 15rpx;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  padding: 5rpx 15rpx;
+  margin: 15rpx 50rpx;
+  border-bottom: 1rpx solid  rgba(240, 240, 240, .8);
+  height: 60rpx;
+}
+
+.placeholderClass {
+  color: #fff;
+}
+
+.search image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+}
+.content{
+  position: relative;
+  /* top: 140rpx; */
+}
+.author{
+  font-size: 24rpx;
+  text-align: center;
+ margin-top: 15rpx;
+ padding: 5rpx 0;
+}
+.avatar_info {
+  display: flex;
+  align-items: center;
+  padding: 0 50rpx;
+}
+.avatar_info .avatar {
+  display: block;
+  overflow: hidden;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.avatar_info .name {
+  padding: 0 20rpx;
+  font-size: 30rpx;
+}
+.info{
+  padding: 15rpx 50rpx 50rpx 50rpx;
+}
+.info .city{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.city .name{
+ font-size: 70rpx;
+}
+.city .time{
+  font-size: 24rpx;
+}
+.message{
+  margin: 25rpx 0 50rpx 0;
+  font-size: 24rpx;
+}
+/* .currentWeather{
+  margin-left: 150rpx;
+} */
+.weather_tmp .temperature,.weather,.pm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.temperature{
+  font-size: 180rpx;
+  text-align: center;
+  margin: 25rpx 0;
+}
+.weather{
+  margin: 30rpx 0 20rpx 0;
+
+}
+
+.pm text{
+  font-size: 24rpx;
+  height: 30rpx;
+  text-align: center;
+  line-height: 30rpx;
+  padding: 10rpx 15rpx;
+  border-radius: 20rpx;
+  background: rgba(240, 240, 240, 0.2);
+}
+.weather_date .title{
+  font-size: 26rpx;
+}
+.weather_item .temperature_date,.weather_date,.wind{
+  margin-top: 20rpx;
+}
+.weather_date .guide{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 24rpx;
+  padding: 20rpx 0;
+  /* border-bottom: 1rpx solid rgba(240, 240, 240, .4); */
+  background: rgba(0, 0, 0, .6);
+  margin-bottom: 20rpx;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.weather_item{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 185rpx;
+  flex-shrink: 0;
+}
+.livingIndex_item image{
+  width: 45rpx;
+  height: 45rpx;
+  /* margin-right: 10rpx; */
+  /* vertical-align: middle; */
+}
+.livingIndex_item text{
+  text-align: center;
+  font-size: 28rpx;
+}
+.set_weather{
+  color: #888;
+}
+.livingIndex_item{
+  width: 33.3333%;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1rpx solid rgba(250, 250, 250, .2);
+
+}
+.livingIndex_item:last-child{
+  border: none;
+}
+/* .livingIndex_box{
+  display: flex;
+  justify-content: center; */
+  /* align-items: center;
+} */
+.livingIndex{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 24rpx;
+  margin: 50rpx 0 0 0;
+  background:rgba(0, 0, 0, .6);
+  height: 110rpx;
+  padding: 5rpx;
+}
+.life{
+  margin-top: 40rpx;
+}
+.life .title{
+  font-size: 26rpx;
+} 
+.lifeIndex{
+  margin:0 0 20rpx 0;
+  background: rgba(0, 0, 0, 0.6)
+}
+.lifeDes{
+  display: flex;
+  /* height: 160rpx; */
+  justify-content: center;
+  align-items: center;
+  margin: 0 30rpx;
+  padding: 25rpx 0;
+  border-bottom: 1rpx solid rgba(250, 250, 250, .2);
+}
+.lifeDes:last-child{
+  border-bottom: none;
+}
+.lifeDes image{
+  width: 100rpx;
+  height: 100rpx;
+  padding: 0 20rpx;
+}
+.des{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.zs{
+  margin-top: 20rpx;
+  font-size: 24rpx;
+}

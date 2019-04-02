@@ -1,0 +1,63 @@
+<!--pages/about/about.wxml-->
+<view class='about'>
+  <swiper autoplay interval='5000' indicator-dots duration circular indicator-color='#666666' indicator-active-color='#87CEFA'>
+    <swiper-item>
+      <image src='../../img/guoyu.jpg' catchtap='previewImages'></image>
+      <view class='title'>6sp真机测试</view>
+    </swiper-item>
+    <swiper-item>
+      <image src='../../img/guoyu.jpg' catchtap='previewImages'></image>
+      <view class='title'>不考虑向下兼容</view>
+    </swiper-item>
+    <swiper-item>
+      <image src='../../img/guoyu.jpg' catchtap='previewImages'></image>
+      <view class='title'>不保证向上兼容</view>
+    </swiper-item>
+  </swiper>
+
+  <view class='item'>
+    <view class='item_title'>问题反馈</view>
+    <view class='i'>
+      <view class='item_img'>
+        <image src='../../img/wechat.png'></image>
+        <view>通过微信反馈</view>
+      </view>
+      <view class='item_i' catchtap='copy' data-name='wechat' data-content='{{wechat}}'>
+        <view>Ann241</view>
+      </view>
+    </view>
+
+     <view class='i'>
+      <view class='item_img' >
+        <image src='../../img/qq.png'></image>
+        <view>通过QQ反馈</view>
+      </view>
+      <view class='item_i' catchtap='copy' data-name='QQ' data-content='{{qq}}'>
+        <view>331549523</view>
+      </view>
+    </view>
+     <view class='i'>
+      <view class='item_img'>
+        <image src='../../img/weibo2.png'></image>
+        <view>通过微博反馈</view>
+      </view>
+      <view class='item_i' catchtap='copy' data-name='weibo' data-content='{{weibo}}'>
+        <view>Vimalakirti20</view>
+      </view>
+    </view>
+  </view>
+
+   <view class='item'>
+    <view class='item_title'>数据来源</view>
+         <view class='i'>
+      <view class='item_img'>
+        <image src='../../img/weather.png'></image>
+        <view>天气数据来源：</view>
+      </view>
+      <view class='item_i'>
+        <view>百度地图开放平台</view>
+      </view>
+    </view>
+  </view>
+  <view class='author'>代码搬运工：Vimalakirti</view>
+</view>

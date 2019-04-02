@@ -1,0 +1,54 @@
+<!--pages/set/set.wxml-->
+<view>
+  <view class='version'>
+    <image src='../../img/weather.png'></image>
+    <view class='version-title'>过雨—天气 0.0.0.1 无敌mini版</view>
+  </view>
+  <view class='set'>
+    <view class='title'>
+      <image src='../../img/set.png'></image>
+      <text>个性化</text>
+    </view>
+    <view class='set_item'>
+      <text>开启首页快捷搜索</text>
+      <switch color='#40a7e7' data-switchParam='hiddenSearch' checked='{{!setting.hiddenSearch}}' bindchange='switchChange'></switch>
+    </view>
+    <view class='set_item'>
+      <text>显示生活指数信息</text>
+      <switch color='#40a7e7' data-switchParam='hiddenLife' checked='{{!setting.hiddenLife}}' bindchange='switchChange'></switch>
+    </view>
+  </view>
+
+  <view class='set'>
+    <view class='title'>
+      <image src='../../img/liangdu.png'></image>
+      <text>屏幕亮度</text>
+    </view>
+    <view class='set_screenBrightness'>
+     <view class='now'>
+       <view>当前屏幕亮度</view>
+     </view>
+     <view>{{screenBrightness}}</view>
+    </view>
+    <view class='value' >范围值0~100</view>
+    <view class='screenBrightness'>
+      <text>设置屏幕亮度</text>
+      <slider  value='{{screenBrightness}}' min='0' max='100' step='1' block-size='12' block-color='#40a7e7' activeColor='#40a7e7' show-value='true' bindchange='screenBrightnessChanging' bindchanging='screenBrightnessChanging'></slider>
+    </view>
+  </view>
+
+  <view class='set'>
+    <view class='title'>
+      <image src='../../img/clear.png'></image>
+      <text>还原</text>
+    </view>
+    <view class='set_item' catchtap='initStorage' data-type='setting'>
+      <text>还原所有设置</text>
+     <image src='../../img/arrow.png'></image>
+    </view>
+    <view class='set_item' catchtap='initStorage' data-type='cache'>
+      <text>清除本地缓存</text>
+      <image src='../../img/arrow.png'></image>
+    </view>
+  </view>
+</view>

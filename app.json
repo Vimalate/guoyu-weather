@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/set/set",
+    "pages/about/about",
+    "pages/openSet/openSet"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#87CEFA",
+    "navigationBarTextStyle": "light",
+    "navigationBarTitleText": "过雨"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "确认开启位置信息小程序才能正常使用"
+    }
+  }
+}
