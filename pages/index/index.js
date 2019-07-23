@@ -2,6 +2,7 @@ var bmap = require('../../lib/bmap-wx.js');
 let utils = require('../../utils/util');
 let globalData = getApp().globalData;
 let SYSTEMINFO = globalData.systeminfo;
+const key = globalData.key
 let message = require('../../message/messages.js');
 Page({
   data: {
@@ -18,6 +19,7 @@ Page({
 
 
   },
+  
   onShow: function() {
     this.getCitytWeather()
     this.init({})
@@ -83,7 +85,13 @@ Page({
         this.setData({
           setting,
         })
+        
         // successFunc && successFunc(setting)
+      },
+      fail: () => {
+        this.setData({
+          setting: {},
+        })
       },
     })
   },
@@ -102,13 +110,22 @@ Page({
       duration: 300,
     });
     if (val) {
-      this.geocoder(val, (loc) => {
-        this.init({
-          location: `${loc.lng},${loc.lat}`
-        })
-      })
+      // this.geocoder(val, (loc) => {
+      //   this.init({
+      //     location: `${loc.lng},${loc.lat}`
+      //   })
+      // })
+      this.getWeather(val)
+      this.getHourly(val)
     }
   },
+  //清空搜索栏
+  clearInput() {
+    this.setData({
+      searchValue: '',
+    })
+  },
+
   //经纬度解码
   geocoder(address, success) {
     wx.request({
@@ -143,23 +160,96 @@ Page({
 
   //初始加载天气数据
   init(params) {
-    let BMap = new bmap.BMapWX({
-      ak: globalData.ak,
-    })
-    BMap.weather({
-      location: params.location,
-      fail: this.fail,
-      success: this.success,
+    // let BMap = new bmap.BMapWX({
+    //   ak: globalData.ak,
+    // })
+    // BMap.weather({
+    //   location: params.location,
+    //   fail: this.fail,
+    //   success: this.success,
+    // })
+    wx.getLocation({
+      success: (res) => {
+        this.getWeather(`${res.latitude},${res.longitude}`)
+        this.getHourly(`${res.latitude},${res.longitude}`)
+        // callback && callback()
+      },
+      fail: (res) => {
+        this.fail(res)
+      }
     })
   },
-  success(data) {
+
+  getWeather(location) {
+    wx.request({
+      url: `${globalData.requestUrl.weather}`,
+      data: {
+        location,
+        key,
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res)
+          let data = res.data.HeWeather6[0]
+
+          if (data.status === 'ok') {
+            this.clearInput()
+            this.success(data, location)
+          } else {
+            wx.showToast({
+              title: '查询失败',
+              icon: 'none',
+            })
+          }
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          title: '查询失败',
+          icon: 'none',
+        })
+      },
+    })
+  },
+  getHourly(location) {
+    wx.request({
+      url: `${globalData.requestUrl.hourly}`,
+      data: {
+        location,
+        key,
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          let data = res.data.HeWeather6[0]
+          if (data.status === 'ok') {
+            this.setData({
+              hourlyDatas: data.hourly || []
+            })
+          }
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          title: '查询失败',
+          icon: 'none',
+        })
+      },
+    })
+  },
+
+  success(data,location) {
+    this.setData({
+      searchCity:location
+    })
     // console.log(data)
     let now = new Date()
-    data.updateTimeFormat = utils.formatDate(now, "MM-DD hh:mm");
-    let weather = data.originalData.results[0] || {}
-    data.pm = this.calcPM(weather['pm25'])
-    // 实时天气
-    data.temperature = `${weather.weather_data[0].date.match(/\d+/g)[2]}`
+    console.log(now)
+    data.updateTime = now.getTime()
+    data.updateTimeFormat = utils.formatDate(now, "MM-dd hh:mm");
+    // let weather = data.originalData.results[0] || {}
+    // data.pm = this.calcPM(weather['pm25'])
+    // // 实时天气
+    // data.temperature = `${weather.weather_data[0].date.match(/\d+/g)[2]}`
     wx.setStorage({
       key: 'cityWeather',
       data,
@@ -168,7 +258,7 @@ Page({
       cityWeather: data,
     })
   },
-  //获取地址失败的回调
+  // //获取地址失败的回调
   fail(res) {
     wx.stopPullDownRefresh()
     console.log(res)
@@ -206,6 +296,17 @@ Page({
       url: '../about/about'
     })
   },
+
+  //右上角分享
+  //右上角转发
+  onShareAppMessage(res) {
+    return {
+      title: '过雨天气',
+      path: '/pages/index/index',
+      imageUrl: '../../img/yu.jpg'
+    }
+  },
+
   //下拉刷新
   onPullDownRefresh(res) {
     this.init({})

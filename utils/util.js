@@ -1,24 +1,28 @@
-export function formatDate(date, fmt) {
-  var o = {
-    "M+": date.getMonth() + 1,//月份
-    "D+": date.getDay(),//日
-    "h+": date.getHours(),//hours
-    "m+": date.getMinutes(),//分钟
-    's+': date.getSeconds(),//秒,
+let formatDate = (nDate, date) => {
+  if (isNaN(nDate.getTime())) {
+    // 不是时间格式
+    return '--'
   }
-
-  if (/(y+)/.test(fmt)) {
-    //RegExp.$1 是RegExp的一个属性,指的是与正则表达式匹配的第一个 子匹配(以括号为标志)字符串，以此类推，RegExp.$2，RegExp.$3，..RegExp.$99总共可以有99个匹配
-    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+  let o = {
+    'M+': nDate.getMonth() + 1,
+    'd+': nDate.getDate(),
+    'h+': nDate.getHours(),
+    'm+': nDate.getMinutes(),
+    's+': nDate.getSeconds(),
+    // 季度
+    'q+': Math.floor((nDate.getMonth() + 3) / 3),
+    'S': nDate.getMilliseconds()
   }
-  for (var k in o) {
-    if (new RegExp("(" + k + ")").test(fmt)) {
-      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)))
+  if (/(y+)/.test(date)) {
+    date = date.replace(RegExp.$1, (nDate.getFullYear() + '').substr(4 - RegExp.$1.length))
+  }
+  for (let k in o) {
+    if (new RegExp('(' + k + ')').test(date)) {
+      date = date.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
     }
   }
-  return fmt;
+  return date
 }
-
 module.exports = {
   formatDate: formatDate
 }

@@ -40,6 +40,7 @@ Page({
   },
   //初始化设置
   initStorage(e){
+    let that=this
     let dataType=e.currentTarget.dataset.type
     console.log(dataType)
     if(dataType==='setting'){
@@ -54,10 +55,10 @@ Page({
               key: 'setting',
               success:(res)=> {
                 wx.showToast({
-                  title: '所有设置初始化成功',
+                  title: '设置初始化成功',
                 })
-                this.setData({
-                  setting:{}
+                that.setData({
+                  setting:{},
                 })
               },
             })
@@ -67,14 +68,14 @@ Page({
     } else if (dataType ==='cache'){
         wx.showModal({
           title: '切了货',
-          content: '确定初始化设置',
+          content: '确定清除缓存',
           cancelText: '不了不了',
           confirmColor: '#87CEFA',
           success: (res)=> {
             wx.clearStorage({
               success:res=>{
                 wx.showToast({
-                  title: '已清除本地缓存',
+                  title: '清除成功',
                 });
               }
             })
@@ -100,26 +101,41 @@ Page({
       data: setting,
     })
   },
+
+  //右上角转发
+  onShareAppMessage(res){
+    return{
+      title:'过雨天气',
+      path:'/pages/index/index',
+      imageUrl:'../../img/yu.jpg'
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+  },
+  onShow(){
     this.getScreenBrightness()
     wx.getStorage({
       key: 'setting',
       success: (res) => {
         let setting = res.data
+        console.log('succes')
         this.setData({
           setting,
         })
       },
       fail: (res) => {
+        console.log('fail')
         this.setData({
           setting: {},
         })
       },
     })
-  },
+  }
   
 
 })

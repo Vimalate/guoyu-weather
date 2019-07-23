@@ -14,8 +14,7 @@ Page({
   previewImages(e) {
    
     wx.previewImage({
-     
-      urls: ['../../img/guoyu.jpg'],
+      urls: ['https://raw.githubusercontent.com/Vimalate/guoyu-weather/master/img/guoyu.jpg'],
       success: function (res) { },
       fail: function (res) {
         console.error('previewImage fail: ', res)

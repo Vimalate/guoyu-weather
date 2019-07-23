@@ -42,6 +42,7 @@ let lyrics=()=>{
   let hour = new Date().getHours()
   switch (hour) {
     case 6:
+      return '心瘾生淫迷，狂喜生肆欲，愚生炼狱'
     case 7:
       return '早上好，今天地铁不挤吧'
     case 8:
@@ -49,12 +50,13 @@ let lyrics=()=>{
       return '反正都要迟到，还是睡一天吧'
     case 10:
     case 11:
-      return '刚到公司？歇会儿吧，等会就该吃饭了'
+      return '遥远的她 不可以再归家'
     case 12:
     case 13:
       return '中午好，如果工作太忙，那就不要吃饭了'
     case 14:
     case 15:
+      return '你离开了，却散落四周'
     case 16:
     case 17:
       return '下午好，老板说了，今天加班没跑了'
@@ -72,6 +74,7 @@ let lyrics=()=>{
     case 1:
       return '熬夜不好，所以我建议通宵'
     case 2:
+      return '百毒不侵的无可救药，破茧成蝶的画地为牢'
     case 3:
       return '这个点儿了还在看手机？单身狗就是好啊'
     case 4:

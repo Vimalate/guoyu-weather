@@ -10,7 +10,7 @@
       <view class='title'>不考虑向下兼容</view>
     </swiper-item>
     <swiper-item>
-      <image src='../../img/guoyu.jpg' catchtap='previewImages'></image>
+      <image src='../../img/dog.jpg' catchtap='previewImages'></image>
       <view class='title'>不保证向上兼容</view>
     </swiper-item>
   </swiper>
@@ -55,7 +55,7 @@
         <view>天气数据来源：</view>
       </view>
       <view class='item_i'>
-        <view>百度地图开放平台</view>
+        <view>和风天气</view>
       </view>
     </view>
   </view>
